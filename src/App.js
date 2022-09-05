@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import ToDoList from "./components/ToDoList";
+import ToDoForm from "./components/ToDoForm";
 function App() {
+  // const state = {
+  const todos = [
+    { id: 1, task: "Walk the dog", done: false },
+    { id: 2, task: "Water the flower", done: true },
+  ];
+  // };
+
+  const [state, setState] = useState(todos);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <div>
+          <h1>Todo List</h1>
+          <div>
+            <ul>
+              {todos.map((todo) => (
+                <ToDoList key={todo.id} todo={todo} />
+              ))}
+            </ul>
+          </div>
+        </div>
+        <ToDoForm todos={todos} />
+      </div>
+    </Router>
   );
 }
 
