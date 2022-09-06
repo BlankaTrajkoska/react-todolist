@@ -1,11 +1,11 @@
 import React from "react";
 
-const ToDoList = ({ todo }) => {
+const ToDoList = ({ todoItem, handleDelete }) => {
   return (
     <div>
       <li>
-        {todo.task}
-        <button>x</button>
+        {todoItem.task}
+        <button onClick={() => handleDelete(todoItem.id)}>x</button>
       </li>
     </div>
   );
