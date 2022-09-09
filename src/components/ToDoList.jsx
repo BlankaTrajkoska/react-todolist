@@ -1,12 +1,21 @@
 import React from "react";
-
-const ToDoList = ({ todoItem, handleDelete }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+const ToDoList = ({ todoItem, handleDelete, handleClick, index }) => {
   return (
-    <div>
-      <li>
-        {todoItem.task}
-        <button onClick={() => handleDelete(todoItem.id)}>x</button>
-      </li>
+    <div className="list">
+      <span
+        className={`${todoItem.done ? "item-done" : "item"}`}
+        onClick={() => handleClick(index)}
+      >
+        <FontAwesomeIcon icon={faCheck} /> {todoItem.task}{" "}
+      </span>
+      <span>
+        <FontAwesomeIcon
+          icon={faXmark}
+          onClick={() => handleDelete(todoItem.id)}
+        />
+      </span>
     </div>
   );
 };
